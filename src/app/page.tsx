@@ -19,6 +19,7 @@ export default function Home() {
   const [player2Time, setPlayer2Time] = useState<number>(initialTime);
   const [currentPlayer, setCurrentPlayer] = useState<1 | 2 | null>(null);
   const [timerRunning, setTimerRunning] = useState<boolean>(false);
+  const [paused, setPaused] = useState<boolean>(false);
 
   useEffect(() => {
     setPlayer1Time(initialTime);
@@ -28,7 +29,7 @@ export default function Home() {
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
 
-    if (timerRunning && currentPlayer !== null) {
+    if (timerRunning && currentPlayer !== null && !paused) {
       intervalId = setInterval(() => {
         if (currentPlayer === 1) {
           setPlayer1Time((prevTime) => {
@@ -51,7 +52,7 @@ export default function Home() {
     }
 
     return () => clearInterval(intervalId);
-  }, [timerRunning, currentPlayer]);
+  }, [timerRunning, currentPlayer, paused]);
 
   const handlePlayerButtonClick = (player: 1 | 2) => {
     if (!timerRunning) {
@@ -62,6 +63,7 @@ export default function Home() {
     } else {
       setCurrentPlayer(player);
     }
+    setPaused(false);
   };
 
   const handleReset = () => {
@@ -69,6 +71,7 @@ export default function Home() {
     setCurrentPlayer(null);
     setPlayer1Time(initialTime);
     setPlayer2Time(initialTime);
+    setPaused(false);
   };
 
   const handleInitialTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,6 +79,11 @@ export default function Home() {
     if (!isNaN(newTime) && newTime > 0) {
       setInitialTime(newTime);
     }
+  };
+
+  const handlePause = () => {
+    setPaused(!paused);
+    setTimerRunning(!paused);
   };
 
   return (
@@ -110,6 +118,13 @@ export default function Home() {
             disabled={player1Time <= 0}
           >
             Player 1
+          </Button>
+        </div>
+
+        {/* Pause Button */}
+        <div className="flex flex-col justify-center items-center p-4">
+          <Button onClick={handlePause} className="w-32 h-12">
+            {paused ? "Resume" : "Pause"}
           </Button>
         </div>
 
