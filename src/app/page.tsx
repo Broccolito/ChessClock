@@ -74,16 +74,16 @@ export default function Home() {
     setPaused(false);
   };
 
+  const handlePause = () => {
+    setPaused(!paused);
+    setTimerRunning(!paused);
+  };
+
   const handleInitialTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTime = parseInt(e.target.value);
     if (!isNaN(newTime) && newTime > 0) {
       setInitialTime(newTime);
     }
-  };
-
-  const handlePause = () => {
-    setPaused(!paused);
-    setTimerRunning(!paused);
   };
 
   return (
@@ -109,7 +109,7 @@ export default function Home() {
             currentPlayer === 1 ? "bg-accent/20" : ""
           }`}
         >
-          <div className="text-6xl font-mono mb-4">
+          <div className="text-8xl font-mono mb-4">
             {formatTime(player1Time)}
           </div>
           <Button
@@ -127,7 +127,7 @@ export default function Home() {
             currentPlayer === 2 ? "bg-accent/20" : ""
           }`}
         >
-          <div className="text-6xl font-mono mb-4">
+          <div className="text-8xl font-mono mb-4">
             {formatTime(player2Time)}
           </div>
           <Button
