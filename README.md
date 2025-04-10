@@ -34,8 +34,8 @@ ChessClock is a simple and intuitive application designed to serve as a chess cl
 1.  **Clone the repository**:
 
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/Broccolito/ChessClock
+    cd ChessClock
     ```
 
 2.  **Install dependencies**:
