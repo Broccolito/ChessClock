@@ -140,15 +140,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Pause Button */}
-      <div className="border-t border-foreground p-4 flex justify-center">
+      {/* Pause and Reset Buttons */}
+      <div className="p-4 flex justify-center space-x-4">
         <Button onClick={handlePause} className="w-32 h-12">
           {paused ? "Resume" : "Pause"}
         </Button>
-      </div>
-
-      {/* Reset Button */}
-      <div className="p-4 flex justify-center">
         <Button onClick={handleReset} className="w-32 h-12">
           <Icons.reset className="mr-2" />
           Reset
@@ -157,4 +153,3 @@ export default function Home() {
     </div>
   );
 }
-
