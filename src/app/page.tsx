@@ -31,7 +31,7 @@ export default function Home() {
 
     if (timerRunning && currentPlayer !== null && !paused) {
       intervalId = setInterval(() => {
-        if (currentPlayer === 1) {
+        if (currentPlayer === 2) {
           setPlayer1Time((prevTime) => {
             if (prevTime <= 0) {
               clearInterval(intervalId);
@@ -59,6 +59,7 @@ export default function Home() {
       setCurrentPlayer(player);
       setTimerRunning(true);
     } else if (currentPlayer === player) {
+      setCurrentPlayer(null);
       setTimerRunning(false);
     } else {
       setCurrentPlayer(player);
@@ -106,14 +107,14 @@ export default function Home() {
         {/* Player 1 */}
         <div
           className={`flex-1 flex flex-col justify-center items-center p-4 border-r border-foreground ${
-            currentPlayer === 1 ? "bg-accent/20" : ""
+            currentPlayer === 2 ? "bg-accent/20" : ""
           }`}
         >
-          <div className="text-8xl font-mono mb-4">
+          <div className="text-9xl font-mono mb-4">
             {formatTime(player1Time)}
           </div>
           <Button
-            className="w-48 h-16 text-2xl"
+            className="w-48 h-16 text-2xl bg-red-500 hover:bg-red-700 text-white font-bold"
             onClick={() => handlePlayerButtonClick(1)}
             disabled={player1Time <= 0}
           >
@@ -124,14 +125,14 @@ export default function Home() {
         {/* Player 2 */}
         <div
           className={`flex-1 flex flex-col justify-center items-center p-4 border-l border-foreground ${
-            currentPlayer === 2 ? "bg-accent/20" : ""
+            currentPlayer === 1 ? "bg-accent/20" : ""
           }`}
         >
-          <div className="text-8xl font-mono mb-4">
+          <div className="text-9xl font-mono mb-4">
             {formatTime(player2Time)}
           </div>
           <Button
-            className="w-48 h-16 text-2xl"
+            className="w-48 h-16 text-2xl bg-green-500 hover:bg-green-700 text-white font-bold"
             onClick={() => handlePlayerButtonClick(2)}
             disabled={player2Time <= 0}
           >
