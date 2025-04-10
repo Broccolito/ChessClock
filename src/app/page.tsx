@@ -121,13 +121,6 @@ export default function Home() {
           </Button>
         </div>
 
-        {/* Pause Button */}
-        <div className="flex flex-col justify-center items-center p-4">
-          <Button onClick={handlePause} className="w-32 h-12">
-            {paused ? "Resume" : "Pause"}
-          </Button>
-        </div>
-
         {/* Player 2 */}
         <div
           className={`flex-1 flex flex-col justify-center items-center p-4 border-l border-foreground ${
@@ -147,6 +140,13 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Pause Button */}
+      <div className="border-t border-foreground p-4 flex justify-center">
+        <Button onClick={handlePause} className="w-32 h-12">
+          {paused ? "Resume" : "Pause"}
+        </Button>
+      </div>
+
       {/* Reset Button */}
       <div className="p-4 flex justify-center">
         <Button onClick={handleReset} className="w-32 h-12">
@@ -157,3 +157,4 @@ export default function Home() {
     </div>
   );
 }
+
